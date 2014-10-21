@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Parassood_Promotioncreater>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Parassood_Promotioncreater>
+    </modules>
+</config>

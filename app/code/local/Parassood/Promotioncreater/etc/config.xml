@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+ * @category    Parassood
+ * @package     Parassood_Promotioncreater
+ * @copyright   Paras Sood
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Parassood_Promotioncreater>
+            <version>0.0.2</version>
+        </Parassood_Promotioncreater>
+    </modules>
+    <global>
+        <helpers>
+            <promotioncreater>
+                <class>Parassood_Promotioncreater_Helper</class>
+            </promotioncreater>
+        </helpers>
+        <models>
+            <promotioncreater>
+                <class>Parassood_Promotioncreater_Model</class>
+            </promotioncreater>
+        </models>
+        <resources>
+            <promotioncreater_setup>
+                <setup>
+                    <module>Parassood_Promotioncreater</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </promotioncreater_setup>
+        </resources>
+    </global>
+    <crontab>
+        <jobs>
+            <promotion_creater>
+                <schedule>
+                    <cron_expr>0 1 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>promotioncreater/observer::importPromotions</model>
+                </run>
+            </promotion_creater>
+        </jobs>
+    </crontab>
+</config>
