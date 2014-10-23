@@ -65,6 +65,12 @@ class Parassood_Promotioncreater_Model_Observer
             if (in_array($row[4],$this->_salesruleType)) {
                 $discountAmount = $row[9];
                 $salesRule = Mage::getModel('salesrule/rule');
+                $id = $salesRule->load($row[0],'promo_ref')->getId();
+                if(isset($id)){
+                    // This promo ref is already imported and is a duplicate. Log promo ref and continue.
+                    Mage::log('Trying to import duplicate Promo Reference: ' . $row[0],null,'salesrule_import.log');
+                    continue;
+                }
                 $salesRule->setName($row[1])
                     ->setFromDate($row[5])
                     ->setToDate($row[6])
@@ -76,7 +82,7 @@ class Parassood_Promotioncreater_Model_Observer
                     ->setDiscountAmount($discountAmount)
                     ->setPromoQty($row[7])
                     ->setPromoRef($row[0])
-                     ->setPromotionImage($row[2]);
+                    ->setPromotionImage($row[2]);
 
                 $this->_salesRules[$row[0]] = $salesRule;
 
